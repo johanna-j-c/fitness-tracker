@@ -25,3 +25,5 @@ def get_all_users():
             "age": user.age
         })
     return jsonify(all_users_response)
+
+
