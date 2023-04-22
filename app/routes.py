@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, jsonify
 
 class User:
     def __init__(self, id, name, age):
@@ -14,3 +14,14 @@ user_list = [
 ]
 
 user_bp = Blueprint("/users", __name__, url_prefix="/users")
+
+@user_bp.route("", methods=["GET"])
+def get_all_users():
+    all_users_response = []
+    for user in user_list:
+        all_users_response.append({
+            "id": user.id,
+            "name": user.name,
+            "age": user.age
+        })
+    return jsonify(all_users_response)
